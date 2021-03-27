@@ -13,10 +13,10 @@ def RK4 (passo, x, xLinha, passos, h):
     k4=calcXLinha(x[:, sizeF - 1] + h * k3)
 
     #realizando integracao e appendeando na array f
-    np.append(x, x[:, sizeF - 1] + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4), axis=1)
+    x = np.append(x, np.reshape(x[:, sizeF - 1] + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4),(4,1)), axis=1)
 
     #calculando fLinha para proxima iteracao
-    np.append(xLinha, calcXLinha(x[:, sizeF]))
+    xLinha = np.append(xLinha, np.reshape(calcXLinha(x[:, sizeF]),(4,1)),axis=1)
 
     #recursao
     if (passo<passos):
@@ -30,25 +30,25 @@ def RK4 (passo, x, xLinha, passos, h):
 def calcXLinha (x):
     A= np.array([[-2,-1,-1,-2],[1,-2,2,-1],[-1,-2,-2,-1],[2,-1,1,-2]])
 
-    xLinha = A * x
+    xLinha = np.dot(A, x)
     return xLinha
 
 def calcXEstrela (t):
-    xEstrela = np.array(4)
+    xEstrela = np.zeros(4)
     xEstrela[0] = math.exp(-t)*math.sin(t) + math.exp(-3*t)*math.cos(3*t)
     xEstrela[1] = math.exp(-t)*math.cos(t) + math.exp(-3*t)*math.sin(3*t)
     xEstrela[2] = -math.exp(-t)*math.sin(t) + math.exp(-3*t)*math.cos(3*t)
     xEstrela[3] = -math.exp(-t)*math.cos(t) + math.exp(-3*t)*math.sin(3*t)
 
-    return xEstrela.reshape(1,4)
+    return xEstrela.reshape(4,1)
 
 def calculaErro (x,n,t0,tf):
     dominio = np.linspace(t0,tf,n)
-    erro = np.array(n)
+    erro = np.zeros(n)
 
     #calcula os erros de todoo o dominio
     for i in range(n):
-        erroParcial=np.max(calcXEstrela(dominio[i])-x[i])
+        erroParcial=np.max(calcXEstrela(dominio[i])-x[:,i].reshape(4,1))
         erro[i]=erroParcial
 
     return erro

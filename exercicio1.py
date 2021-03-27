@@ -6,7 +6,7 @@ erros = []
 listaN = [20,40,80,160,320,640]
 
 #condicoes iniciais
-x=np.array([1,1,1,-1]).transpose()
+x=np.array([1,1,1,-1]).reshape(4,1)
 xLinha= metodos.calcXLinha(x)
 
 #faz o loop para calculdo de x e do erro com diferentes numeros de passos
