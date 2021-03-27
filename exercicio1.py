@@ -28,7 +28,7 @@ print(R)
 
 
 print("X finais: ")
-for i in range(len(listaN)-1):
+for i in range(len(listaN)):
     print("n= {}: ".format(listaN[i]), end="")
     print(arraysX[i][:,-1])
 
