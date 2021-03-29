@@ -45,18 +45,20 @@ def calcXLinha(t, x):
     return xLinha
 
 
-def calcXEstrela(t):
-    xEstrela = t ** 2 + 1 / (1 - t)
-    return xEstrela
-
-
-def calculaErro(x, t):
-    size = len(t)
+def calculaErro(x, xEstrela):
+    size = len(x)
     erro = np.zeros(size)
 
     # calcula os erros de todoo o dominio
     for i in range(size):
-        erroParcial = calcXEstrela(t[i]) - x[i]
+        erroParcial = xEstrela[i] - x[i]
         erro[i] = erroParcial
 
     return erro
+
+
+def calcVetorXEstrela(t):
+    xEstrela=np.zeros(len(t))
+    for i in range(len(t)):
+        xEstrela[i]=t[i] ** 2 + 1 / (1 - t[i])
+    return xEstrela
