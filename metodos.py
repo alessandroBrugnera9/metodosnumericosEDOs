@@ -25,8 +25,6 @@ def RK4 (passo, x, xLinha, passos, h):
     return x,xLinha
 
 
-
-
 def calcXLinha (x):
     A= np.array([[-2,-1,-1,-2],[1,-2,2,-1],[-1,-2,-2,-1],[2,-1,1,-2]])
 
