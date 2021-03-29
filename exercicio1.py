@@ -1,7 +1,12 @@
+import os
+
 import numpy as np
 import metodos
 import matplotlib.pyplot as plt
 import euler
+
+if not os.path.exists('figs/ex1'):  # garantir que pasta existe para salvar imagens
+    os.makedirs('figs/ex1')
 
 t0=0
 tf=2
@@ -43,6 +48,7 @@ for i in range(len(listaN)):
 
 plt.title("Erro do RK4 com diferente número de passos")
 plt.legend(loc="upper right")
+fig.savefig("figs/ex1/1-Euler")
 plt.show()
 
 
@@ -63,7 +69,7 @@ erro = (euler.calculaErro(x, xEstrela))  # calcula erro e adiciona na lista de e
 
 fig, axs = plt.subplots(3)
 
-fig.suptitle("Comparação de resolução exata e utilizando método de Euler implícito")
+fig.suptitle("Comparação de resolução exata e utilizando método de Euler implícito, n={}".format(n))
 axs[0].plot(t, xEstrela)
 axs[0].set_title("Solução explícita x*(t)")
 axs[1].plot(t, x)
@@ -78,4 +84,5 @@ fig.tight_layout()
 
 # shift subplots down:
 fig.subplots_adjust(top=0.85)
+fig.savefig("figs/ex1/1-RK4")
 plt.show()

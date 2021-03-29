@@ -1,11 +1,7 @@
-import os
-
 import numpy as np
 import matplotlib.pyplot as plt
 import metodos3
 
-if not os.path.exists('figs/ex3'):  # garantir que pasta existe para salvar imagens
-    os.makedirs('figs/ex3')
 # constantes e condicoes iniciais, criando vetores
 
 x0=500
@@ -36,33 +32,31 @@ for i in range(len(arraysAlfa)):
     yLinha[0]=metodos3.calcYlinha(x0, y0, z0)
     zLinha[0]=metodos3.calcZlinha(x0, y0, z0, arraysAlfa[i])
 
-    x, y, z=metodos3.eulerExplicito(x, y, z, xLinha, yLinha, zLinha, t, arraysAlfa[i])
+    x, y, z=metodos3.RK4(x, y, z, xLinha, yLinha, zLinha, t, arraysAlfa[i])
 
-    # plot Euler explicito
+    # plot RK4
     fig=plt.figure()
     ax=fig.add_subplot(1, 1, 1)
     ax.plot(t, x, label="População de Coelhos", color="blue")
     ax.plot(t, y, label="População de Lebres", color="black")
     ax.plot(t, z, label="População de Raposas", color="red")
 
-    plt.title("Clássico modelo presa-predador com Euler Explícito")
-    plt.figtext(.5, .9, 'tf={}, alfa={}'.format(arrayTf[i], arraysAlfa[i]), fontsize=10, ha='center')
+    plt.title("Clássico modelo presa-predador com RK4")
+    plt.figtext(.5, .9, 'tf={}, alfa={}'.format(arrayTf[i],arraysAlfa[i]), fontsize=10, ha='center')
     fig.subplots_adjust(top=0.85)
     plt.legend(loc="upper left")
     ax.set(xlabel='Tempo', ylabel='População')
     fig.tight_layout()
-    fig.savefig("figs/ex3/Tempo-euler, tf={}, alfa={}.png".format(arrayTf[i], arraysAlfa[i]))
     plt.show()
 
     fig2=plt.figure()
     ax=fig2.add_subplot(projection='3d')
     ax.plot(x, y, z, label="Retrato de fase", color="black")
 
-    plt.title(" Retrato de Fase do Clássico modelo presa-predador com Euler Explícito")
-    plt.figtext(.5, .9, 'tf={}, alfa={}'.format(arrayTf[i], arraysAlfa[i]), fontsize=10, ha='center')
+    plt.title(" Retrato de Fase do Clássico modelo presa-predador com RK4")
+    plt.figtext(.5, .9, 'tf={}, alfa={}'.format(arrayTf[i],arraysAlfa[i]), fontsize=10, ha='center')
     fig2.subplots_adjust(top=0.85)
     plt.legend(loc="upper right")
     # ax.set(xlabel='Tempo', ylabel='População')
     fig2.tight_layout()
-    fig2.savefig("figs/ex3/Fase-euler, tf={}, alfa={}.png".format(arrayTf[i], arraysAlfa[i]))
     plt.show()

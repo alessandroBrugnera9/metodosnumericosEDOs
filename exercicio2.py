@@ -1,7 +1,11 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
-
 import metodos2
+
+if not os.path.exists('figs/ex2'):  # garantir que pasta existe para salvar imagens
+    os.makedirs('figs/ex2')
 #constantes e condicoes iniciais, criando vetores
 x0=1.5
 y0=1.5
@@ -31,24 +35,26 @@ ax = fig.add_subplot(1, 1, 1)
 ax.plot(t, x, label="População de Coelhos", color="blue")
 ax.plot(t, y, label="População de Raposas", color="red")
 
-plt.title("Clássico modelo presa-predador com Euler Explícito")
+plt.title("Clássico modelo presa-predador com Euler Explícito, n={}".format(n))
 plt.legend(loc="upper left")
 ax.set(xlabel='Tempo', ylabel='População')
+fig.savefig("figs/ex2/1tempo, n={}".format(n))
 plt.show()
 
 fig2=plt.figure()
 ax = fig2.add_subplot(1, 1, 1)
 ax.plot(x, y, label="Retrato de fase", color="black")
 
-plt.title(" Retrato de Fase do Clássico modelo presa-predador com Euler Explícito")
+plt.title(" Retrato de Fase do Clássico modelo presa-predador com Euler Explícito, n={}".format(n))
 plt.legend(loc="upper right")
 # ax.set(xlabel='Tempo', ylabel='População')
+fig2.savefig("figs/ex2/1fase, n={}".format(n))
 plt.show()
 
 
 
 # euler implicito
-n=500
+n=5000
 
 t=np.linspace(t0,tf,n)
 x=np.zeros(n)
@@ -69,18 +75,20 @@ ax = fig.add_subplot(1, 1, 1)
 ax.plot(t, x, label="População de Coelhos", color="blue")
 ax.plot(t, y, label="População de Raposas", color="red")
 
-plt.title("Clássico modelo presa-predador com Euler Implicito")
+plt.title("Clássico modelo presa-predador com Euler Implicito, n={}".format(n))
 plt.legend(loc="upper left")
 ax.set(xlabel='Tempo', ylabel='População')
+fig.savefig("figs/ex2/2tempo, n={}".format(n))
 plt.show()
 
 fig2=plt.figure()
 ax = fig2.add_subplot(1, 1, 1)
 ax.plot(x, y, label="Retrato de fase", color="black")
 
-plt.title(" Retrato de Fase do Clássico modelo presa-predador com Euler Implicito")
+plt.title(" Retrato de Fase do Clássico modelo presa-predador com Euler Implicito, n={}".format(n))
 plt.legend(loc="upper right")
 # ax.set(xlabel='Tempo', ylabel='População')
+fig2.savefig("figs/ex2/2fase, n={}".format(n))
 plt.show()
 
 
@@ -116,6 +124,7 @@ for n in arrayN:
     plt.title("Clássico modelo presa-predador comparação de métodos de Euler n={}".format(n))
     plt.legend(loc="upper left")
     ax.set(xlabel='Tempo', ylabel='População')
+    fig.savefig("figs/ex2/3tempo, n={}".format(n))
     plt.show()
 
 
@@ -145,13 +154,15 @@ ax.plot(t, y, label="População de Raposas", color="red")
 plt.title("Clássico modelo presa-predador com RK4")
 plt.legend(loc="upper left")
 ax.set(xlabel='Tempo', ylabel='População')
+fig.savefig("figs/ex2/4tempo, n={}".format(n))
 plt.show()
 
 fig2=plt.figure()
 ax = fig2.add_subplot(1, 1, 1)
 ax.plot(x, y, label="Retrato de fase", color="black")
 
-plt.title(" Retrato de Fase do Clássico modelo presa-predador com RK4")
+plt.title(" Retrato de Fase do Clássico modelo presa-predador com RK4, n={}".format(n))
 plt.legend(loc="upper right")
 # ax.set(xlabel='Tempo', ylabel='População')
+fig2.savefig("figs/ex2/4fase, n={}".format(n))
 plt.show()
