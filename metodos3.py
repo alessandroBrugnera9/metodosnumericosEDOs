@@ -55,10 +55,10 @@ def RK4(x, y, z, xLinha, yLinha, zLinha, t, alfa):
         m1=zLinha[passo]
         k2=calcXlinha(x[passo] + h/2*k1, y[passo] + h/2*l1, z[passo] + h/2*m1)
         l2=calcYlinha(x[passo] + h/2*k1, y[passo] + h/2*l1, z[passo] + h/2*m1)
-        m2=calcYlinha(x[passo] + h/2*k1, y[passo] + h/2*l1, z[passo] + h/2*m1, alfa)
+        m2=calcZlinha(x[passo] + h/2*k1, y[passo] + h/2*l1, z[passo] + h/2*m1, alfa)
         k3=calcXlinha(x[passo] + h/2*k2, y[passo] + h/2*l2, z[passo] + h/2*m2)
         l3=calcYlinha(x[passo] + h/2*k2, y[passo] + h/2*l2, z[passo] + h/2*m2)
-        m3=calcYlinha(x[passo] + h/2*k2, y[passo] + h/2*l2, z[passo] + h/2*m2, alfa)
+        m3=calcZlinha(x[passo] + h/2*k2, y[passo] + h/2*l2, z[passo] + h/2*m2, alfa)
         k4=calcXlinha(x[passo] + h*k3, y[passo] + h*l3, z[passo] + h*m3)
         l4=calcYlinha(x[passo] + h*k3, y[passo] + h*l3, z[passo] + h*m3)
         m4=calcZlinha(x[passo] + h*k3, y[passo] + h*l3, z[passo] + h*m3, alfa)

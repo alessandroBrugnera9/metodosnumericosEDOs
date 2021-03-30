@@ -25,7 +25,7 @@ for i in range(len(listaN)):
     arraysX.append(x)
     erros.append(metodos.calculaErro(x,listaN[i],t0,tf)) #calcula erro e adiciona na lista de erros
 
-#TODO: fazer a conta maluca do R
+
 R=[]
 for i in range(len(listaN)-1):
     R.append(np.max(erros[i])/np.max(erros[i+1]))
@@ -39,7 +39,7 @@ for i in range(len(listaN)):
     print(arraysX[i][:,-1])
 
 
-#TODO: plotter
+
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
 for i in range(len(listaN)):
